@@ -23,4 +23,8 @@ $ yarn install
 $ yarn dev
 ```
 
+### Note: 
+
+This PR was an improvement after the live code challenge.
+
 Please, take a look at this [PR (improvements)](https://github.com/sebastiandelaroche/interview/pull/1) for some small improvements
