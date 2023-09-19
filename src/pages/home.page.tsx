@@ -48,6 +48,7 @@ const Container = styled.div`
 
 export const HomePage = () => {
   const [form] = Form.useForm();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>();
 
   const onSubmitHandle = (values: unknown) => {
