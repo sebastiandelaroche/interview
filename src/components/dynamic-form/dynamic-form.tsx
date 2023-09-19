@@ -1,37 +1,41 @@
 import { FC } from "react";
-import { Form, Button } from "antd";
+import { Form, Button, FormInstance } from "antd";
 import styled from "styled-components";
-import { Field } from "./types";
 import { getFieldComponent } from "./fields/utils";
+import { Field } from "./types";
 
 type DynamicForm = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  form?: any;
   onSubmit: (values: unknown) => void;
   fields: Array<Field>;
+  form?: FormInstance;
+  loading?: boolean;
 };
 
 const Container = styled.div`
+  width: 300px;
   border: 1px solid gray;
-  padding: 3rem;
   border-radius: 10px;
+  padding: 2rem;
 `;
 
-export const DynamicForm: FC<DynamicForm> = ({ form, fields, onSubmit }) => {
+export const DynamicForm: FC<DynamicForm> = ({
+  form,
+  fields,
+  onSubmit,
+  loading,
+}) => {
   return (
     <Container>
-      <Form
-        form={form}
-        onFinish={onSubmit}
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
-      >
+      <Form form={form} onFinish={onSubmit}>
         {fields.map((field, index) =>
           getFieldComponent({ ...field, key: `field-${index}` })
         )}
-
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={!!loading}
+          style={{ width: "100%" }}
+        >
           Submit
         </Button>
       </Form>
